@@ -8,9 +8,7 @@ Crafty.c('Monster',{
 });
 
 Crafty.c('M1',{
-    events: {
-        "EnterFrame": function(){self.y-=1}
-    },
+
 
 	init:function(){
 		this.requires('Monster')

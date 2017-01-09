@@ -1,3 +1,11 @@
+Crafty.c('Map', {
+	init: function(){
+		this.requires('Canvas');
+		
+		
+	}
+})
+
 Crafty.c('Grid', {
   init: function() {
     this.attr({

@@ -1,8 +1,6 @@
 
-
 Game = {
-		
-		
+
 		map_grid: {
 			width: 50,
 			height: 25,
@@ -28,28 +26,19 @@ Game = {
 			
 			Crafty.init(Game.width(), Game.height());
 			Crafty.background('green');
-		
+
 		
 			for (var x = 0; x<Game.map_grid.width;x++){
 				for (var y = 0; y<Game.map_grid.height;y++){
-					var at_edge = x == 0 || x == Game.map_grid.width -1 || y == 0  || y == 20|| y == Game.map_grid.height - 1;
+					var at_edge = x == 0 || x == Game.map_grid.width -1 || y == 0  || y == Game.map_grid.height - 1;
 					if (at_edge){
 						Crafty.e('Wall').at(x,y);
 
 						
 					}
 					else{
-						if(y>20){
-							Crafty.e('2D,Canvas,Color')
-							.attr({
-								x: x*Game.map_grid.tile.width,
-								y: y*Game.map_grid.tile.height,
-								w: Game.map_grid.tile.width,
-								h: Game.map_grid.tile.height
-								
-							})
-						.color('rgb(50,50,50)');
-						}
+						Crafty.e('Floor').at(x,y);
+				
 					}
 
 				}
