@@ -5,6 +5,7 @@ Crafty.c('Wall',{
 	},
 });
 
+
 Crafty.c('Floor',{
 	init: function(){
 		this.requires('Actor, Color, Floor')

@@ -1,68 +1,46 @@
 Crafty.c('Player',{
-	
-	command:0,
-	moving:0,
-	init: function(){
-		this.requires('Actor, Keyboard, Motion, Color, Collision, Tween')
 
-			//.fourway(self.speed)
+	init: function(){
+		this.requires('Actor, Moving, Keyboard, Motion, Color, Collision')
+
 			.color('rgb(0,0,100)')
 			.collide()
 			.bind('KeyDown', function(e) {							//Track key press (Player commanding movement)
-				if(e.key == Crafty.keys.LEFT_ARROW) {
+				if(e.key == Crafty.keys.SHIFT) {
+					this.sneaking = 400
+				}
+				if(e.key == Crafty.keys.A) {
 					this.command += 1
-					//this.x+=10
-					//this.tween({x:this.x-Game.map_grid.tile.width},100)
-				} else if (e.key == Crafty.keys.RIGHT_ARROW) {
+				} else if (e.key == Crafty.keys.D) {
 					this.command += 2
-					//this.tween({x:this.x+Game.map_grid.tile.width},100)
-				} else if (e.key == Crafty.keys.UP_ARROW) {
+				} else if (e.key == Crafty.keys.W) {
 					this.command += 4
-				} else if (e.key == Crafty.keys.DOWN_ARROW) {
+				} else if (e.key == Crafty.keys.S) {
 					this.command += 8
 				}
 			})
 			.bind('KeyUp', function(e) {							//Track key release (Player cancel movement)
-				if(e.key == Crafty.keys.LEFT_ARROW) {
+				if(e.key == Crafty.keys.SHIFT) {
+					this.sneaking = 0
+				}
+				if(e.key == Crafty.keys.A) {
 					this.command -=1
-				} else if (e.key == Crafty.keys.RIGHT_ARROW) {
+				} else if (e.key == Crafty.keys.D) {
 					this.command -=2
-				} else if (e.key == Crafty.keys.UP_ARROW) {
+				} else if (e.key == Crafty.keys.W) {
 					this.command -=4
-				} else if (e.key == Crafty.keys.DOWN_ARROW) {
+				} else if (e.key == Crafty.keys.S) {
 					this.command -=8
 				}
 			})
-			.bind('TweenEnd', function(e){
-				this.moving = 0
-			})
-			.bind('EnterFrame', function(e,dt){
-				if (this.moving == 0){
-					switch(this.command){
-					case 1:
-						this.tween({x:this.x-Game.map_grid.tile.width},200)
-						this.moving = 1 
-						break;
-					case 2:
-						this.tween({x:this.x+Game.map_grid.tile.width},200)
-						this.moving = 2 
-						break;
-					case 4:
-						this.tween({y:this.y-Game.map_grid.tile.width},200)
-						this.moving = 4 
-						break;
-					case 8:
-						this.tween({y:this.y+Game.map_grid.tile.width},200)
-						this.moving = 8 
-						break;
+		    .bind('EnterFrame', function(e,dt){
+		    	if (this.moving == 0 && this.command!=0){
+		    		this.move();
 					
-					}
-					
-				  
-					
-				}
-			
-			})
+		    	}
+		
+		    });
+
 			
 		
 	
@@ -79,20 +57,32 @@ Crafty.c('Player',{
 	
 
 
+	  die:function(){
+		  alert("You got eaten! \n Level reached:"+ Game.level);
+		  Game.level = 0
+		  Game.Generate_map();
+		  
+	  },
 	
 	  stopMovement: function() {
-
+          //  alert(hitdata)
 		    this.moving = 0
 		    this.cancelTween('x')
 		    this.cancelTween('y')
 		    this.x -= this.dx
 		    this.y -= this.dy
+		    this.x = Math.round(this.x/Game.map_grid.tile.width)*Game.map_grid.tile.width
+		    this.y = Math.round(this.y/Game.map_grid.tile.height)*Game.map_grid.tile.height
 		},
 	
 	
-	  moveLocation: function(){
-		  this.x = Game.map_grid.width*Game.map_grid.tile.width - (self.x*1.5)
-		  this.y = Game.map_grid.height*Game.map_grid.tile.height - (self.y*1.5)
+	  moveLocation: function(data){	  
+		  this.cancelTween('x')
+		  this.cancelTween('y')
+		  //this.at_random();
+		  Game.Generate_map();
+		  //this.x = Game.map_grid.width*Game.map_grid.tile.width - (self.x*1.5)
+		  //this.y = Game.map_grid.height*Game.map_grid.tile.height - (self.y*1.5)
 		  
 	  }
 	
