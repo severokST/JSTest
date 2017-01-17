@@ -16,8 +16,16 @@ Crafty.c('Grid', {
 
   at: function(x, y) {
     if (x === undefined && y === undefined) {
+
       return { x: this.x/Game.map_grid.tile.width, y: this.y/Game.map_grid.tile.height }
     } else {
+    	
+		  if (x==Game.Player.x && y ==Game.Player.y){
+			  	this.at_random;return;}							//Test against player location
+		  for (var objcheck = 0; objcheck<Game.obj_list.length;objcheck++){
+			  if(x==Game.obj_list[objcheck].x&&y==Game.obj_list[objcheck].y){this.at_random;return;;}	//Test against existing level objects
+		  }
+    	
       this.attr({ x: x * Game.map_grid.tile.width, y: y * Game.map_grid.tile.height });
       return this;
     }
