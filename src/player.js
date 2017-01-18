@@ -1,8 +1,11 @@
 Crafty.c('Player',{
 
 	init: function(){
-		this.requires('Actor, Moving, Keyboard, Motion, Color, Collision')
-
+		this.requires('Actor, Moving, Keyboard, Motion, Color, Collision, Gamepad')
+			.gamepad(0)
+			.bind('GamepadKeyChange', function (e) {
+				console.log('Button ' + e.button + ', Value ' + e.value);
+			})
 			.color('rgb(0,0,255)')
 			.collide()
 			.bind('KeyDown', function(e) {							//Track key press (Player commanding movement)
