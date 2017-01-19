@@ -3,8 +3,29 @@ Crafty.c('Player',{
 	init: function(){
 		this.requires('Actor, Moving, Keyboard, Motion, Color, Collision, Gamepad')
 			.gamepad(0)
+			// TODO: encapsulate better to be vendor-generic
 			.bind('GamepadKeyChange', function (e) {
-				console.log('Button ' + e.button + ', Value ' + e.value);
+				var button = e.button;
+				var value = e.value; // 1 or 0
+				// These values are specific to a Logitech F310
+				// Not sure if other controllers are similar or not
+				// Button 12: up
+				// Button 13: down
+				// Button 14: left
+				// Button 15: right
+				// value is 1 on press, we want to add
+				// value is 0 on release, we want to subtract
+				var addOrSubtract = value == 1 ? 1 : -1;
+				// Key down
+				if (button == 14) { // left
+					this.command += addOrSubtract;
+				} else if (button == 15) { // right
+					this.command += 2 * addOrSubtract;
+				} else if (button == 12) { // up
+					this.command += 4 * addOrSubtract;
+				} else if (button == 13) { // down
+					this.command += 8 * addOrSubtract;
+				}
 			})
 			.color('rgb(0,0,255)')
 			.collide()
@@ -39,15 +60,8 @@ Crafty.c('Player',{
 		    .bind('EnterFrame', function(e,dt){
 		    	if (this.moving == 0 && this.command!=0){
 		    		this.move();
-					
 		    	}
-		
 		    });
-
-			
-		
-	
-
 	},
 	
 
