@@ -104,27 +104,27 @@ Crafty.c('Player',{
 		  if (Trans.x == 0){
 			  console.log("Left")
 			  Game.location.x-=1;
-			  this.at(10,10);
+			  this.at(45,10);
 			 // this.x = 
 			  //this.x = Game.map_grid.width -2*Game.map_grid.tile.width;
 		  }
 		  if (Trans.x == (Game.map_grid.width-1)*Game.map_grid.tile.width){
 			  console.log("Right")
 			  Game.location.x+=1;
-			  this.at(10,10);
+			  this.at(5,10);
 			 // this.x = 2*Game.map_grid.tile.width;
 		  }
 		  if (Trans.y == 0){
 			  console.log("Up")
 			  Game.location.y-=1;
 			  console.log(Game.location.y)
-			  this.at(10,10);
+			  this.at(10,20);
 			//  this.y = Game.map_grid.height-2*Game.map_grid.tile.height;	  
 		  }
 		  if (Trans.y == (Game.map_grid.height-1)*Game.map_grid.tile.height){
 			  console.log("Down")
 			  Game.location.y+=1;
-			  this.at(10,10);
+			  this.at(10,5);
 			 // this.y = 2*Game.map_grid.tile.height;
 		  }
 		  

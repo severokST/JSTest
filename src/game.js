@@ -184,7 +184,7 @@ Game = {
 					//console.log(Ty)
 				    //console.log(Game.map[Tx][Ty])
 					var TerrType = Game.map[Tx][Ty];								//Load terrain type from array
-					console.log(TerrType)
+					//console.log(TerrType)
 					for(var xrfill=xregion*5;xrfill<xregion*5+5 ;xrfill++){		//X-Region to fill
 						for(var yrfill=yregion*5;yrfill<yregion*5+5;yrfill++){		//Y-Region to fill
 							//var drawx = xregion*5+xrfill
@@ -210,7 +210,7 @@ Game = {
 									Game.obj_list.map_tile[xrfill][yrfill].type("Rock");
 									break;
 							}
-							console.log("Terrain set")
+							//console.log("Terrain set")
 						}
 					}
 				}
