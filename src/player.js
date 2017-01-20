@@ -66,7 +66,7 @@ Crafty.c('Player',{
 	
 
 	collide: function(){
-		//  alert("Collision")
+		//  console.log("Collision")
 		    this.onHit('Solid', this.stopMovement);
             this.onHit('Enemy', this.die);
             this.onHit('MoveLocation', this.moveLocation);
@@ -74,14 +74,14 @@ Crafty.c('Player',{
 		},
 	
 	die:function(){
-		  alert("You got eaten! \n Level reached:"+ Game.level);
+		  console.log("You got eaten! \n Level reached:"+ Game.level);
 		  Game.level = 0
 		  Game.Generate_map();
 		  
 	  },
 	
 	stopMovement: function(){
-          //  alert(hitdata)
+          //  console.log(hitdata)
 		    this.moving = 0
 		    this.cancelTween('x')
 		    this.cancelTween('y')
@@ -93,44 +93,44 @@ Crafty.c('Player',{
 	
 	moveLocation: function(data){	  
 		  
-		  alert("moving")
+		  console.log("moving")
 		  this.cancelTween('x')
 		  this.cancelTween('y')
 		  
 		  var Trans = data[0].obj
 		  
-		 // alert(Trans.x + " " + Trans.y)
+		 // console.log(Trans.x + " " + Trans.y)
 		  
 		  if (Trans.x == 0){
-			  alert("Left")
+			  console.log("Left")
 			  Game.location.x-=1;
 			  this.at(10,10);
 			 // this.x = 
 			  //this.x = Game.map_grid.width -2*Game.map_grid.tile.width;
 		  }
 		  if (Trans.x == (Game.map_grid.width-1)*Game.map_grid.tile.width){
-			  alert("Right")
+			  console.log("Right")
 			  Game.location.x+=1;
 			  this.at(10,10);
 			 // this.x = 2*Game.map_grid.tile.width;
 		  }
 		  if (Trans.y == 0){
-			  alert("Up")
+			  console.log("Up")
 			  Game.location.y-=1;
-			  alert(Game.location.y)
+			  console.log(Game.location.y)
 			  this.at(10,10);
 			//  this.y = Game.map_grid.height-2*Game.map_grid.tile.height;	  
 		  }
 		  if (Trans.y == (Game.map_grid.height-1)*Game.map_grid.tile.height){
-			  alert("Down")
+			  console.log("Down")
 			  Game.location.y+=1;
 			  this.at(10,10);
 			 // this.y = 2*Game.map_grid.tile.height;
 		  }
 		  
-		 //  alert("To load area")
+		 //  console.log("To load area")
 		  Game.Load_area();
-		  // alert("Area loaded")
+		  // console.log("Area loaded")
 		  //this.at_random();
 		  //Game.Generate_map();
 		  //this.x = Game.map_grid.width*Game.map_grid.tile.width - (self.x*1.5)
