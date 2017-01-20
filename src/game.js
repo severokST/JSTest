@@ -66,15 +66,10 @@ Game = {
 				}
 			}
 		
-				
-			
-			Game.Player = Crafty.e('Player').at(10,10);
+			Game.Player = Crafty.e('Player').at(Game.map_grid.width / 2, Game.map_grid.height / 2);
 			
 			Game.Generate_map(Game.location.x,Game.location.y);
 			Game.Load_area();
-			
-			
-
 		},
 		
 		Generate_map: function(){
