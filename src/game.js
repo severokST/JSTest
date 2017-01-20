@@ -1,6 +1,10 @@
 
 Game = {
 
+		// TODO: put this in dynamic config.json
+		transition_offset: 3,
+		// End config.json
+
 		level: 0,
 		
         obj_list: {
