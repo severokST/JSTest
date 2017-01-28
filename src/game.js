@@ -1,6 +1,10 @@
 
 Game = {
 
+		// TODO: put this in dynamic config.json
+		transition_offset: 3,
+		// End config.json
+
 		level: 0,
 		
         obj_list: {
@@ -51,7 +55,7 @@ Game = {
 			for (var x = 0; x<Game.map_grid.width;x++){
 
 				Game.obj_list.map_tile[x]= new Array(Game.map_grid.height);
-				//alert("Spawned Array")
+				//console.log("Spawned Array")
 				for (var y = 0; y<Game.map_grid.height;y++){
 					var at_edge = x == 0 || x == Game.map_grid.width -1 || y == 0  || y == Game.map_grid.height - 1;
 					if (at_edge){
@@ -62,15 +66,10 @@ Game = {
 				}
 			}
 		
-				
-			
-			Game.Player = Crafty.e('Player').at(10,10);
+			Game.Player = Crafty.e('Player').at(Game.map_grid.width / 2, Game.map_grid.height / 2);
 			
 			Game.Generate_map(Game.location.x,Game.location.y);
 			Game.Load_area();
-			
-			
-
 		},
 		
 		Generate_map: function(){
@@ -163,39 +162,39 @@ Game = {
 		//	
 			var x = Game.location.x;
 			var y = Game.location.y;
-			alert("Loading area: "+x+", "+y)
-        //    alert("Purge objects")
+			console.log("Loading area: "+x+", "+y)
+        //    console.log("Purge objects")
 			while(Game.obj_list.objects.length){			//Todo: Swap with Store function for revisiting area
 				objpurge= Game.obj_list.objects.pop();
 				objpurge.destroy();
 			}
-       //     alert("Purge enemies")
+       //     console.log("Purge enemies")
 			while(Game.obj_list.enemies.length){			//Ditto?
 				objpurge= Game.obj_list.enemies.pop();
 				objpurge.destroy();
 			}
-        //    alert("Purging done")
+        //    console.log("Purging done")
 			
 			for(var xregion=0;xregion<10;xregion++){								//Select X-region of tiles
 				for(var yregion=0;yregion<5;yregion++){								//Select Y-region of tiles
 					var Tx = x*10+xregion											//Precalc array index
 					var Ty = y*5+yregion											//JS does not seem to like calculations in index
-					//alert(Tx)
-					//alert(Ty)
-				    //alert(Game.map[Tx][Ty])
+					//console.log(Tx)
+					//console.log(Ty)
+				    //console.log(Game.map[Tx][Ty])
 					var TerrType = Game.map[Tx][Ty];								//Load terrain type from array
-					alert(TerrType)
+					//console.log(TerrType)
 					for(var xrfill=xregion*5;xrfill<xregion*5+5 ;xrfill++){		//X-Region to fill
 						for(var yrfill=yregion*5;yrfill<yregion*5+5;yrfill++){		//Y-Region to fill
 							//var drawx = xregion*5+xrfill
 							//var drawy = yregion*5+yrfill
 							//TerrType = yregion;
-							//alert(TerrType)
+							//console.log(TerrType)
 							switch(TerrType){
 								case 0:
-									//alert("Set terain")
+									//console.log("Set terain")
 									Game.obj_list.map_tile[xrfill][yrfill].type("Ocean");
-									//alert("Type set")
+									//console.log("Type set")
 									break;
 								case 1:
 									Game.obj_list.map_tile[xrfill][yrfill].type("Grass");
@@ -210,12 +209,12 @@ Game = {
 									Game.obj_list.map_tile[xrfill][yrfill].type("Rock");
 									break;
 							}
-							alert("Terrain set")
+							//console.log("Terrain set")
 						}
 					}
 				}
 			}
-			//alert("Doneso")
+			//console.log("Doneso")
 		}
 
 	}

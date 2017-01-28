@@ -33,7 +33,7 @@ Crafty.c('Monster',{
 				if (my>0){this.command = 4;}
 				else{this.command = 8;}
 			}
-			//alert(this.command)
+			console.log("Command: " + this.command);
 			
 		}
 		else{
@@ -51,7 +51,6 @@ Crafty.c('Monster',{
 	},
 
 	  stopMovement: function() {
-	      //  alert(hitdata)
 		    this.moving = 0
 		    this.cancelTween('x')
 		    this.cancelTween('y')
